@@ -25,11 +25,11 @@ function App() {
     }
   }
   return (
-    <div className='flex flex-col mx-auto w-1/2'>
-      <h1 className='text-xl'>Countdown app</h1>
-      <p>Got an exciting day coming up? Let's start a countdown!</p>
+    <div className='flex flex-col mx-auto w-1/2 pb-5'>
+      <h1 className='text-3xl mt-3 mb-1'>Countdown app</h1>
+      <h2>Got an exciting day coming up? Let's start a countdown!</h2>
       <DateInput formSubmit={formSubmit} eventName={eventName} date={date} setEventName={setEventName} setDate={setDate} />
-      {upcomingEvents.map((event: EventType) => <CountdownCard name={event.name} date={event.date} daysUntil={event.daysUntil} key={event.name} />)}
+      {upcomingEvents.sort((a, b) => a.daysUntil - b.daysUntil).map((event: EventType) => <CountdownCard name={event.name} date={event.date} daysUntil={event.daysUntil} key={event.name} />)}
     </div>
   );
 }
