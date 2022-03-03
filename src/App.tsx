@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CountdownCard from './components/CountdownCard';
+import DateInput from './components/DateInput';
 import { createCountdown } from './lib/createCountdown';
 
 export interface EventType {
@@ -27,15 +28,7 @@ function App() {
     <div className='flex flex-col mx-auto w-1/2'>
       <h1 className='text-xl'>Countdown app</h1>
       <p>Got an exciting day coming up? Let's start a countdown!</p>
-      <form onSubmit={formSubmit}>
-        <label>Name:
-          <input className='border' name='Name' type='text' value={eventName} onChange={(event) => setEventName(event.target.value)} />
-        </label>
-        <label>Date:
-          <input className='border' name='Date' type='date' value={date} onChange={(event) => setDate(event.target.value)} />
-        </label>
-        <button type='submit' className='bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded w-2/3'>Add event to see the countdown</button>
-      </form>
+      <DateInput formSubmit={formSubmit} eventName={eventName} date={date} setEventName={setEventName} setDate={setDate} />
       {upcomingEvents.map((event: EventType) => <CountdownCard name={event.name} date={event.date} daysUntil={event.daysUntil} key={event.name} />)}
     </div>
   );
